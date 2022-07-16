@@ -1,0 +1,40 @@
+@model Packt.Shared.Category
+@using Packt.Shared
+@{
+    ViewData["Title"] = "Category Detail - " + Model.CategoryName;
+}
+
+<h2>Category Detail - @Model.CategoryName</h2>
+<hr/>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Product Id</dt>
+        <dd>@Model.CategoryId</dd>
+        <dt>Product Name</dt>
+        <dd>@Model.CategoryName</dd>
+    </dl>
+    <hr/>
+    <h3>Products</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Id</th>
+                    <th>Product Cost</th>
+                    <th>Units in Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Product p in Model.Products)
+                {
+                    <tr>
+                        <td>@p.ProductName</td>
+                        <td>@p.ProductId</td>
+                        <td>@p.UnitPrice.Value.ToString("C")</td>
+                        <td>@p.UnitsInStock</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+</div>

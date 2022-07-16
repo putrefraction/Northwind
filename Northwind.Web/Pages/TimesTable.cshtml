@@ -1,0 +1,34 @@
+@page
+@* @model Northwind.Web.Pages.TimesTableModel *@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@functions {
+    [BindProperty]
+    public int Value {get;set;}
+
+    public void OnGet()
+    {
+        ViewData["Title"] = "Northwind B2B - Utils";
+    }
+
+}
+@{
+    var numbers = Enumerable.Range(1, 10);
+}
+
+<div class="row">
+    <form method="post">
+        <input asp-for="Value">
+    </form>
+    <table>
+        <tr>
+            <th>Times Table</th>
+        </tr>
+        @if (Value != 0)
+        {
+            @foreach (var number in numbers)
+            {
+                <tr><td><span>@number * @Value = @(@Value * @number)</span></td></tr>
+            } 
+        }
+    </table>
+</div>

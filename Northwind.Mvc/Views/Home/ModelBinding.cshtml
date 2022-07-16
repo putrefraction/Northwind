@@ -1,0 +1,39 @@
+@model Northwind.Mvc.Models.HomeModelBindingViewModel
+@{
+    ViewData["Title"] = "Model Binding Demo";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div>
+    Enter values for your thing in the following form:
+</div>
+<form action="/home/modelbinding?id=3" method="post">
+    <input name="id" value="1">
+    <input name="color" value="Red" />
+    <input name ="email" value="test@example.com" />
+    <input type="submit" />
+</form>
+@if (Model != null)
+{
+    <h2>Submitted Thing</h2>
+    <hr/>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>Model Id</dt>
+            <dd>@Model.Thing.Id</dd>
+            <dt>Model.Color</dt>
+            <dd>@Model.Thing.Color</dd>
+            <dt>Model.Email</dt>
+            <dd>@Html.DisplayFor(model => model.Thing.Email)</dd>
+        </dl>
+    </div>
+    @if (Model.HasErrors)
+    {
+        <div>
+            @foreach (string errorMessage in Model.ValidationErrors)
+            {
+                <div class="alert alert-danger" role="alert">@errorMessage</div>
+            }
+        </div>
+    }
+}
